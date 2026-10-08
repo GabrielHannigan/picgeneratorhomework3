@@ -61,7 +61,7 @@ int main(int argc, char **argv){
     if(result != 1){
         printf("Invalid try again, ");
     } else{ 
-        printf("Valid number: ");
+        printf("\n");
     }
     //change array to int
     height = atoi(buffer);
@@ -77,13 +77,18 @@ int main(int argc, char **argv){
     if(result != 1){
         printf("Invalid try again, ");
     } else{ 
-        printf("Valid number: ");
+        printf("\n");
     }
     //array to interger to change data type
     width = atoi(buffer);
 
+    //allocate by height
+    char **canvas =malloc(height * sizeof(char));
 
-
+    //using for loop allocate the width
+    for(int i = 0; i< height; i++){
+        canvas[i] = malloc(width * sizeof(char));
+    } 
 
     return 0;
 }
