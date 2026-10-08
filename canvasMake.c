@@ -29,6 +29,9 @@ char getSpaceRandomChar(double chance, char *charList, int size){
     return ' ';
 }
 
+//int width = fgets();
+
+
 //main function list variables
 int main(int argc, char **argv){
     srand(time(NULL));
@@ -40,6 +43,45 @@ int main(int argc, char **argv){
     
     char picture = getSpaceRandomChar(0.20, randomCharList, listSize);
     printf("%c\n", picture);
+
+
+    
+    //Sets buffer
+    char buffer [100];
+
+    //creates height variable
+    int height;
+    //prompts for input
+    printf("Enter Height: ");
+    //gathers input from terminal
+    fgets(buffer, sizeof(buffer), stdin);
+    // string scanf to check to make sure input can be int
+    int result = sscanf(buffer, "%d", &height);
+    //if check if it returns a 0 it is not able to be an int
+    if(result != 1){
+        printf("Invalid try again, ");
+    } else{ 
+        printf("Valid number: ");
+    }
+    //change array to int
+    height = atoi(buffer);
+
+
+    //creates height variable
+    int width;
+    //prompts for input
+    printf("Enter Width: ");
+    //gathers input from terminal
+    fgets(buffer, sizeof(buffer), stdin);
+    int result = sscanf(buffer, "%d", &width);
+    if(result != 1){
+        printf("Invalid try again, ");
+    } else{ 
+        printf("Valid number: ");
+    }
+    //array to interger to change data type
+    width = atoi(buffer);
+
 
 
 
