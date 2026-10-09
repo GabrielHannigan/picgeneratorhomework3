@@ -100,6 +100,14 @@ int main(int argc, char **argv){
     printf("\n");
 }
 
+//Free the memory step
+//free each row
+    for(int i =0; i < height; i++){
+        free(canvas[i]);
+    }
+    //free outer pointers
+    free(canvas);
+
     return 0;
 }
 
