@@ -7,29 +7,20 @@
 #include <ctype.h>
 
 
-//int *numArray = malloc(sizeof(int)*9);
 
-// char **getRandomChar;
-
-char getRandomChar(char *charList, int size){
-    //get a random number betweem 0 and size
-    int n = rand()%size;
-    return charList[n];
-}
 
 //set variable that randomizes the roll and placement of char or space
-char getSpaceRandomChar(double chance, char *charList, int size){
+char getRandomChar(double chance, char *charList, int size){
     double roll= (double)rand() / RAND_MAX;
 
+    if statement to handle random roll
     if (roll < chance && size > 0){
         int randomIndex = rand() % size;
         return charList[randomIndex];
     }
-
+    //return space which will be used 80% of the time
     return ' ';
 }
-
-//int width = fgets();
 
 
 //main function list variables
@@ -41,8 +32,8 @@ int main(int argc, char **argv){
     //variable list size no magic numbers
     int listSize = 4;
     
-    char picture = getSpaceRandomChar(0.20, randomCharList, listSize);
-    printf("%c\n", picture);
+    // char picture = getRandomChar(0.80, randomCharList, listSize);
+    // printf("%c\n", picture);
 
 
     
@@ -73,7 +64,7 @@ int main(int argc, char **argv){
     printf("Enter Width: ");
     //gathers input from terminal
     fgets(buffer, sizeof(buffer), stdin);
-    int result = sscanf(buffer, "%d", &width);
+    result = sscanf(buffer, "%d", &width);
     if(result != 1){
         printf("Invalid try again, ");
     } else{ 
@@ -82,13 +73,32 @@ int main(int argc, char **argv){
     //array to interger to change data type
     width = atoi(buffer);
 
+    
+    
     //allocate by height
-    char **canvas =malloc(height * sizeof(char));
-
-    //using for loop allocate the width
+    char **canvas =malloc(height * sizeof(char *));
+    canvas = malloc(height * sizeof(char *));
+    
+    
+    //using for loop to malloc width
     for(int i = 0; i< height; i++){
         canvas[i] = malloc(width * sizeof(char));
     } 
+
+    //outer for loop to make canvas
+    for(int i = 0; i < height; i++){
+        for(int j = 0; j < width; j++){
+            canvas[i][j] = getRandomChar(0.2, randomCharList, listSize);
+        }
+    }
+
+    //inner for loop to print canvas
+    for(int i = 0; i < height; i++){
+        for(int j = 0; j < width; j++){
+            printf("%c", canvas[i][j]);
+        }    
+    printf("\n");
+}
 
     return 0;
 }
